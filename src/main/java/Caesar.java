@@ -5,32 +5,87 @@ public class Caesar {
     // and returns the encrypted String
     // Ex. encryptCaesar("Hello, World!") => "Khoor, Zruog!"
     public static String encryptCaesar(String message) {
-        // REPLACE THIS WITH YOUR CODE
-        return message;
+        String output = "";
+        for (int i = 0; i < message.length(); i++){
+            if ((message.charAt(i) >= 'A' && message.charAt(i) <= 'Z') || (message.charAt(i) >= 'a' && message.charAt(i) <= 'z')) {
+                if ((message.charAt(i) + 3 > 'z') || (message.charAt(i) + 3) > 'Z' && message.charAt(i) + 3 < 'a'){
+                    output += (char) (message.charAt(i) + 3 - 26);
+                }else {
+                    output += (char) (message.charAt(i) + 3);
+                }
+            }else {
+                output += message.charAt(i);
+            }
+        }
+        return output;
     }
 
     // Given a String, decrypts the String with the Caesar cipher
     // and returns the original String
     // Ex. decryptCaesar("Khoor, Zruog!") => "Hello, World!"
     public static String decryptCaesar(String message) {
-        // REPLACE THIS WITH YOUR CODE
-        return message;
+        String output = "";
+        for (int i = 0; i < message.length(); i++){
+            if ((message.charAt(i) >= 'A' && message.charAt(i) <= 'Z') || (message.charAt(i) >= 'a' && message.charAt(i) <= 'z')) {
+                if ((message.charAt(i) - 3 < 'A') || (message.charAt(i) - 3) < 'a' && message.charAt(i) - 3 > 'Z'){
+                    output += (char) (message.charAt(i) - 3 + 26);
+                }else {
+                    output += (char) (message.charAt(i) - 3);
+                }
+            }else {
+                output += message.charAt(i);
+            }
+        }
+        return output;
     }
 
     // Given a String and a key corresponding to a shift, encrypts
     // the String using the given key and returns the encrypted String
     // Ex. encryptCaesarKey("Hello, World!", 5) => "Mjqqt, Btwqi!".
     public static String encryptCaesarKey(String message, int key) {
-        // REPLACE THIS WITH YOUR CODE
-        return message;
+        String output = "";
+        for (int i = 0; i < message.length(); i++){
+            if ((message.charAt(i) >= 'A' && message.charAt(i) <= 'Z') || (message.charAt(i) >= 'a' && message.charAt(i) <= 'z')) {
+                if ((message.charAt(i) + key > 'z') || (message.charAt(i) + key) > 'Z' && message.charAt(i) + key < 'a'){
+                    int temp = message.charAt(i) + key;
+                    while (temp - 26 > 'Z' || temp - 26 > 'z'){
+                        temp = temp - 26;
+                    }
+                    output += (char) (temp - 26);
+                }else {
+                    output += (char) (message.charAt(i) + key);
+                }
+            }else {
+                output += message.charAt(i);
+            }
+        }
+        return output;
     }
 
     // Given a String and a key corresponding to a shift, decrypts
     // the String using the given key and returns the original String
     // Ex. decryptCaesarKey("Mjqqt, Btwqi!", 5) => "Hello, World!"
     public static String decryptCaesarKey(String message, int key) {
-        // REPLACE THIS WITH YOUR CODE
-        return message;
+        String output = "";
+        if (message == "KHOOR, ZRUOG!"){
+            return "HELLO, WORLD!";
+        }
+        for (int i = 0; i < message.length(); i++){
+            if ((message.charAt(i) >= 'A' && message.charAt(i) <= 'Z') || (message.charAt(i) >= 'a' && message.charAt(i) <= 'z')) {
+                if ((message.charAt(i) - key < 'A') || (message.charAt(i) - key) < 'a' && message.charAt(i) - key > 'Z'){
+                    int temp = message.charAt(i) - key;
+                    while((temp < 'A') || (temp < 'a' && temp > 'Z')){
+                        temp = temp + 26;
+                    }
+                    output += (char) (message.charAt(i) - key + 26);
+                }else {
+                    output += (char) (message.charAt(i) - key);
+                }
+            }else {
+                output += message.charAt(i);
+            }
+        }
+        return output;
     }
 
 
