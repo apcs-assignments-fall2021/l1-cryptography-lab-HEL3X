@@ -67,17 +67,11 @@ public class Caesar {
     // Ex. decryptCaesarKey("Mjqqt, Btwqi!", 5) => "Hello, World!"
     public static String decryptCaesarKey(String message, int key) {
         String output = "";
-        if (message == "KHOOR, ZRUOG!"){
-            return "HELLO, WORLD!";
-        }
         for (int i = 0; i < message.length(); i++){
+            key = key%26;
             if ((message.charAt(i) >= 'A' && message.charAt(i) <= 'Z') || (message.charAt(i) >= 'a' && message.charAt(i) <= 'z')) {
-                if ((message.charAt(i) - key < 'A') || (message.charAt(i) - key) < 'a' && message.charAt(i) - key > 'Z'){
-                    int temp = message.charAt(i) - key;
-                    while((temp < 'A') || (temp < 'a' && temp > 'Z')){
-                        temp = temp + 26;
-                    }
-                    output += (char) (message.charAt(i) - key + 26);
+                if ((message.charAt(i) - key <= 'A') || (message.charAt(i) - key) <= 'a' && message.charAt(i) - key > 'Z'){
+                    output += (char) (message.charAt(i) + 26 - key);
                 }else {
                     output += (char) (message.charAt(i) - key);
                 }
