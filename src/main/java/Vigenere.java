@@ -20,7 +20,7 @@ public class Vigenere {
         char cha = ' ';
         key = key - 65;
         if ((ch >= 'A' && ch <= 'Z') || ch >= 'a' && ch <= 'z'){
-            if (ch - key < 'A' || ch - key < 'a' && ch - key > 'Z'){
+            if (ch - key < 'A' || ch >= 'a' && ch < 'a' + key){
                 cha = (char) (ch - key + 26);
             }else {
                 cha = (char) (ch - key);
