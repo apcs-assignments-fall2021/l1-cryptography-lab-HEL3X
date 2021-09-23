@@ -1,14 +1,74 @@
 import java.util.Scanner;
 
 public class Vigenere {
+    public static char encryptCaesarLetter(char ch, int key) {
+        char cha = ' ';
+        key = key - 65;
+        if ((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch<= 'z')){
+            if ((ch + key > 'z') || (ch + key) > 'Z' && ch + key < 'a'){
+                cha = (char) (ch + key - 26);
+            }else {
+                cha = (char) (ch + key);
+            }
+        }else{
+            return ch;
+        }
+        return cha;
+    }
+
+    public static char decryptCaesarLetter(char ch, int key) {
+        char cha = ' ';
+        key = key - 65;
+        if ((ch >= 'A' && ch <= 'Z') || ch >= 'a' && ch <= 'z'){
+            if (ch - key < 'A' || ch - key < 'a' && ch - key > 'Z'){
+                cha = (char) (ch - key + 26);
+            }else {
+                cha = (char) (ch - key);
+            }
+        }else{
+            return ch;
+        }
+        return cha;
+    }
+
     public static String encryptVigenere(String message, String key) {
-        return message;
-        // REPLACE THIS WITH YOUR CODE
+        String output = "";
+        int count = 0;
+
+        for (int i = 0; i < message.length(); i++){
+            if ((message.charAt(i) >= 'A' && message.charAt(i) <= 'Z') || (message.charAt(i) >= 'a' && message.charAt(i) <= 'z')) {
+                output += (encryptCaesarLetter(message.charAt(i), key.charAt(count)));
+                if (count < key.length()-1){
+                    count++;
+                }else{
+                    count = 0;
+                }
+
+            } else {
+                output += message.charAt(i);
+            }
+        }
+        return output;
     }
 
     public static String decryptVigenere(String message, String key) {
-        return message;
-        // REPLACE THIS WITH YOUR CODE
+        String output = "";
+        int count = 0;
+
+        for (int i = 0; i < message.length(); i++){
+            if ((message.charAt(i) >= 'A' && message.charAt(i) <= 'Z') || (message.charAt(i) >= 'a' && message.charAt(i) <= 'z')) {
+                output += (decryptCaesarLetter(message.charAt(i), key.charAt(count)));
+                if (count < key.length()-1){
+                    count++;
+                }else{
+                    count = 0;
+                }
+
+            } else {
+                output += message.charAt(i);
+            }
+        }
+        return output;
     }
 
 
